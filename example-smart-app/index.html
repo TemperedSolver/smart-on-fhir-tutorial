@@ -120,8 +120,8 @@
         }
       }).then(function(response) {
 				var medTable = "<table class='dataTable'>";
-				response.forEach(function(med){
-					medTable += "<tr><td>"+med.medicationCodeableConcept.text+"</td></tr>";
+				response.forEach(function(med) {
+					medTable += "<tr><td>" + med.medicationCodeableConcept.text + "</td></tr>";
 				});
 				medTable += "</table>";
 				$("#medStatementDiv").html(medTable);
@@ -133,7 +133,16 @@
           status: "active"
         }
       }).then(function(response) {
-        console.log(response)
+        var allergyTable = "<table class='dataTable'>";
+				response.forEach(function(allergy) {
+					allergyTable +=
+						"<tr>" +
+							"<td>" + allergy.substance.text + "</td>" +
+							"<td>" + allergy.status+"</td>" +
+						"</tr>";
+				});
+				allergyTable += "</table>";
+				$("#allergyDiv").html(allergyTable);
       });
 
       patientApi.fetchAll({
