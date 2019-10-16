@@ -158,7 +158,35 @@
           }
         }
       }).then(function(response) {
-        console.log(response)
+        function handleValueQuantity( qObj, dtTm, txt ) {
+					return "<tr>"+
+								"<td>"+txt+"</td>"+
+								"<td>"+qObj.value+" "+qObj.unit+"</td>"+
+								"<td>"+dtTm+"</td>"+
+							"</tr>";
+				}
+				var obsTable = "<table class='dataTable'>";
+				var obvCnt = 0;
+				response.forEach(function(obvObj,idx) {
+					obvCnt++;
+					if (typeof obvObj.valueQuantity === "object") {
+						obsTable += handleValueQuantity( obvObj.valueQuantity, obvObj.effectiveDateTime, obvObj.code.text );
+					}
+					else if (typeof obvObj.component === "object" && obvObj.component.length) {
+						obvObj.component.forEach(function(cObj,idx2) {
+							if (typeof cObj.valueQuantity === "object") {
+								obsTable += handleValueQuantity( cObj.valueQuantity, obvObj.effectiveDateTime, cObj.code.text );
+							}
+						});
+					}
+				});
+				obsTable += "</table>";
+				if (obvCnt > 0) {
+					$("#obvDiv").html(obsTable);
+				}
+				else {
+					$("#obvDiv").html("No Observations Found");
+				}
       });
 		}
 	}
