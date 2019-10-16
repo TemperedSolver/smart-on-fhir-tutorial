@@ -114,12 +114,17 @@
       // var encounterId = smart.encounter.id;
 
       patientApi.fetchAll({
-        type: 'MedicationOrder',
+        type: 'MedicationStatement',
         query: {
           status: "active"
         }
       }).then(function(response) {
-        console.log(response)
+				var medTable = "<table class='dataTable'>";
+				response.forEach(function(med){
+					medTable += "<tr><td>"+med.medicationCodeableConcept.text+"</td></tr>";
+				});
+				medTable += "</table>";
+				$("#medStatementDiv").html(medTable);
       });
 
       patientApi.fetchAll({
