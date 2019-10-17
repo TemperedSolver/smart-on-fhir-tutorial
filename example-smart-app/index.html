@@ -111,7 +111,7 @@
 		if (typeof smart.patient === "object") {
 			console.log(smart);
 			var patientApi = smart.patient.api;
-      		var encounterId = smart.encounter.id;
+      		//var encounterId = smart.encounter.id;
 
 			// Meds
 			patientApi.fetchAll({
@@ -201,8 +201,15 @@
 				$("#demo-name").html(patient.name[0].text);
 				$("#demo-gender").html(patient.gender);
 				$("#demo-dob").html(patient.birthDate);
+				if (patient.identifier && patient.identifier.length) {
+					patient.identifier.forEach(function(obj){
+						if (obj.system === "urn:oid:1.1.1.1.1.1") {
+							$("#demo-mrn").html(obj.value);
+						}
+					});
+				}
 			});
-
+/*
 			// Encounter
 			smart.api.fetchAll({
 				type: 'Encounter',
@@ -211,7 +218,7 @@
 				}
 			}).then(function(response) {
 				console.log(response);
-			});
+			});*/
 		}
 	}
 	function notReady(response) {
