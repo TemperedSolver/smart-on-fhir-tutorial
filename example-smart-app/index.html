@@ -200,7 +200,7 @@
 				$("#demo-gender").html(patient.gender);
 				$("#demo-dob").html(patient.birthDate);
 				if (patient.identifier && patient.identifier.length) {
-					patient.identifier.forEach(function(obj){
+					patient.identifier.forEach(function(obj) {
 						if (obj.system === "urn:oid:1.1.1.1.1.1") {
 							$("#demo-mrn").html(obj.value);
 						}
@@ -215,9 +215,9 @@
 				var encntr = response[0];
 				console.log(encntr);
 				$("#demo-loc").html(encntr.location[0].location.display);
-				$("#demo-rfv").html("Brief death");
+				$("#demo-rfv").html(encntr.reason ? encntr.reason[0].text : "Brief Death");
 				if (encntr.identifier && encntr.identifier.length) {
-					encntr.identifier.forEach(function(obj){
+					encntr.identifier.forEach(function(obj) {
 						if (obj.system === "urn:oid:3.3.3.3.3.3") {
 							$("#demo-fin").html(obj.value);
 						}
