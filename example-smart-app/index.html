@@ -214,6 +214,15 @@
 			}).then(function(response) {
 				var encntr = response[0];
 				console.log(encntr);
+				$("#demo-loc").html(encntr.location[0].location.display);
+				$("#demo-rfv").html("Brief death");
+				if (encntr.identifier && encntr.identifier.length) {
+					encntr.identifier.forEach(function(obj){
+						if (obj.system === "urn:oid:3.3.3.3.3.3") {
+							$("#demo-fin").html(obj.value);
+						}
+					});
+				}
 			});
 		}
 	}
