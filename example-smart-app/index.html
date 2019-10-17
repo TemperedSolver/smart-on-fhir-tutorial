@@ -111,7 +111,7 @@
 		if (typeof smart.patient === "object") {
 			console.log(smart);
 			var patientApi = smart.patient.api;
-      		//var encounterId = smart.encounter.id;
+      		var encounterId = smart.encounter.id;
 
 			// Meds
 			patientApi.fetchAll({
@@ -199,8 +199,10 @@
 				console.log(response);
 				var patient = response[0];
 				$("#demo-name").html(patient.name[0].text);
+				$("#demo-gender").html(patient.gender);
+				$("#demo-dob").html(patient.birthDate);
 			});
-/*
+
 			// Encounter
 			patientApi.fetchAll({
 				type: 'Encounter',
@@ -209,7 +211,7 @@
 				}
 			}).then(function(response) {
 				console.log(response);
-			}); */
+			});
 		}
 	}
 	function notReady(response) {
