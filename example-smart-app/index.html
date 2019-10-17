@@ -210,11 +210,8 @@
 			});
 
 			// Encounter
-			smart.api.fetchAll({
-				type: 'Encounter',
-				query: {
-					"_id": smart.tokenResponse.encounter
-				}
+			patientApi.fetchAll({
+				type: 'Encounter'
 			}).then(function(response) {
 				console.log(response);
 			});
