@@ -195,7 +195,6 @@
 			patientApi.fetchAll({
 				type: 'Patient'
 			}).then(function(response) {
-				console.log(response);
 				var patient = response[0];
 				$("#demo-name").html(patient.name[0].text);
 				$("#demo-gender").html(patient.gender);
@@ -213,7 +212,8 @@
 			patientApi.fetchAll({
 				type: 'Encounter'
 			}).then(function(response) {
-				console.log(response);
+				var encntr = response[0];
+				console.log(encntr);
 			});
 		}
 	}
